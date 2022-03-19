@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --primaryColor: rgb(24, 242, 202);
+    --secondaryColor: rgb(68, 24, 242);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+    font-weight: bold;
+}
+
+nav a {
+    text-decoration: underline;
+    font-size: 2em;
+    color: var(--secondaryColor);
+}
+
+nav div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    color: var(--secondaryColor);
+    font-size: 1em;
+}
+
+#countdown, #score {
+    color: black;
+}
+
+
+
