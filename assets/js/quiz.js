@@ -49,17 +49,17 @@ var containerEl = document.getElementById("container");
 var questions = [
     {
         question: "Question 1",
-        options: ["Wrong", "Wrong", "Correct", "Wrong"],
+        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
         correct: "Correct"
     },
     {
         question: "Question 2",
-        options: ["Wrong", "Wrong", "Correct", "Wrong"],
+        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
         correct: "Correct"
     },
     {
         question: "Question 3",
-        options: ["Wrong", "Wrong", "Correct", "Wrong"],
+        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
         correct: "Correct"
     }
 ];
@@ -82,31 +82,35 @@ function correctAnswer() {
     resultEl.innerHTML = "<p> Correct! </p>";
     resultEl.classList.add("result");
 
-    // Increment current question
+    // Increment current question if it is not the final question
     if (currentQuestion != finalQuestion) {
         currentQuestion++;
     }
+    // If current question is the final question, end the game
     else {
         endGame();
+        return;
     }
 
+    // Small delay for user to see that the answer was correct
     setTimeout(function() {
         displayQuestion()
-     }, 500);
+     }, 250);
 }
 
 // Wrong Answer - reduce time and show wrong banner
 function wrongAnswer() {
-    // Update time
-    if (time >= 5) {
+    // Update time if more than 5 seconds remain
+    if (time > 5) {
         time = time - 5;
         countdownEl.innerText = time;
     }
-
+    // End game if 5 seconds or less remain
     else {
         time = 0;
         countdownEl.innerHTML = time;
-        endGame()
+        endGame();
+        return;
     }
 
     // Display wrong in the result div
@@ -142,6 +146,12 @@ function displayQuestion() {
     optionsEl.innerText = "";
     resultEl.innerHTML = "";
 
+    // Randomize answer option order
+    q.options = q.options.sort(function() {
+        return Math.random() - 0.5
+    });
+    console.log(q.options);
+
     // Create buttons for all options and add to options div with event listeners
     for (i = 0; i < q.options.length; i++) {
         var option = document.createElement("btn");
@@ -153,10 +163,26 @@ function displayQuestion() {
     }
 }
 
+// Randomize question order
+function randomQs() {
+    questions = questions.sort(function() {
+        return Math.random() - 0.5
+    });
+    console.log(questions);
+}
+
+// Evaluate 
+
 // End Game
 function endGame() {
     clearInterval(intervalId);
-    time = startTime; 
+    time = startTime;
+
+    questionEl.innerText = "All done!";
+    optionsEl.innerHTML = "<p> Your final score is " + score + ". </p>";
+
+    
+     
 }
 
 // Start Timer
@@ -172,6 +198,7 @@ function startTimer() {
 
 // Start Game
 function startGame() {
+    randomQs();
     startTimer();
     displayQuestion();
     console.log("Game Started");
