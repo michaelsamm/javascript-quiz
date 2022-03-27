@@ -9,15 +9,18 @@ html {
 
 :root {
     --primaryColor: rgb(24, 242, 202);
-    --secondaryColor: rgb(68, 24, 242);
+    --secondaryColor: rgb(0, 12, 232);
+    --tertiaryColor: rgb(191, 24, 242);
 }
 
 nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 15px 30px;
+    padding: 10px 15px;
+    margin: 10px;
     font-weight: bold;
+    border-bottom: solid 5px var(--primaryColor);
 }
 
 nav a {
@@ -39,5 +42,84 @@ nav div {
     color: black;
 }
 
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10vw auto;
+    width: 50%;
+    padding: 25px 15px;
+}
 
+.align-left {
+    align-items: flex-start;
+}
+
+#startBtn {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 2em;
+    font-weight: bold;
+    color: white;
+    background-color: var(--primaryColor);
+    background-image: linear-gradient(45deg, var(--tertiaryColor) 0%, var(--primaryColor) 50%, var(--secondaryColor) 90%);
+    transition: all .5s ease-out;
+    background-size: 1px 100px;
+    background-position: 0 -10px;
+    padding: 5px 10px;
+    margin: 10px;
+    text-shadow: 2px 2px black;
+    border-radius: 10px;
+}
+
+#startBtn:hover {
+    background-position: 1px -50px;
+    color: black;
+    text-shadow: none;
+}
+
+.question {
+    font-size: 3em;
+}
+
+#options {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: flex-start;
+    margin: 10px 0px;
+}
+
+.option {
+    background-color: var(--primaryColor);
+    font-size: 1.5em;
+    border: solid 1px black;
+    border-radius: 15px;
+    padding: 10px 15px 15px 15px;
+    margin: 2px 0px;
+}
+
+.option:hover {
+    background-color: var(--secondaryColor);
+    color: white;
+    cursor: pointer;
+}
+
+.wrong {
+    background-color: gray;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.correct {
+    box-shadow: 0px 0px 4px black;
+    background-color: var(--tertiaryColor);
+    background-image: linear-gradient(45deg, var(--tertiaryColor) 0%, var(--primaryColor) 50%, var(--secondaryColor) 90%);
+    pointer-events: none;
+}
+
+.result {
+    border-top: solid 5px gray;
+    font-size: 1.5em;
+    font-style: oblique;
+    color: gray;
+}
 
