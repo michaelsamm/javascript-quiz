@@ -79,6 +79,11 @@
         }
 
         function clearHighScores() {
+            // Remove high scores from the table
+            for (i = 0; i < highScores.length; i++) {
+                scoreTableEl.deleteRow(1)
+            }
+            
             // Clear out high scores array
             highScores = [];
 

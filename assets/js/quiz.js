@@ -1,16 +1,10 @@
 // TO DO
-// --Sort high scores
-// --Limit high scores
-// --Compare new score to high score list and update if in top x
-// --HTML on high scores page
-// Landing post-submit new score (high score list with options)
 // Add real questions
 
 
 // Variables
-
 var score = 0;
-var startTime = 15;
+var startTime = 60;
 var time = startTime;
 var intervalId;
 
@@ -37,13 +31,98 @@ var questions = [
         question: "Question 3",
         options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
         correct: "Correct"
+    },
+    {
+        question: "Question 4",
+        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
+        correct: "Correct"
+    },
+    {
+        question: "Question 5",
+        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
+        correct: "Correct"
+    },
+    {
+        question: "Question 6",
+        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
+        correct: "Correct"
+    },
+    {
+        question: "Question 7",
+        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
+        correct: "Correct"
+    },
+    {
+        question: "Question 8",
+        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
+        correct: "Correct"
+    },
+    {
+        question: "Question 9",
+        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
+        correct: "Correct"
+    },
+    {
+        question: "Question 10",
+        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
+        correct: "Correct"
+    },
+    {
+        question: "Question 11",
+        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
+        correct: "Correct"
+    },
+    {
+        question: "Question 12",
+        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
+        correct: "Correct"
+    },
+    {
+        question: "Question 13",
+        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
+        correct: "Correct"
+    },
+    {
+        question: "Question 14",
+        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
+        correct: "Correct"
+    },
+    {
+        question: "Question 15",
+        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
+        correct: "Correct"
+    },
+    {
+        question: "Question 16",
+        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
+        correct: "Correct"
+    },
+    {
+        question: "Question 17",
+        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
+        correct: "Correct"
+    },
+    {
+        question: "Question 18",
+        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
+        correct: "Correct"
+    },
+    {
+        question: "Question 19",
+        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
+        correct: "Correct"
+    },
+    {
+        question: "Question 20",
+        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
+        correct: "Correct"
     }
 ];
 var currentQuestion = 0;
 var finalQuestion = questions.length -1;
 
 var highScores = [];
-var maxHighScores = 8;
+var maxHighScores = 15;
 
 
 
@@ -73,9 +152,14 @@ function correctAnswer() {
     }
 
     // Small delay for user to see that the answer was correct
-    setTimeout(function() {
+    if (time > 1.25) {
+        setTimeout(function() {
+            displayQuestion()
+        }, 250);
+    }
+    else {
         displayQuestion()
-     }, 250);
+    }
 }
 
 // Wrong Answer - reduce time and show wrong banner
@@ -149,7 +233,6 @@ function randomQs() {
     });
 }
 
-
 // Add to high scores
 function addHighScore(event) {
     // Block page refresh on submit
@@ -183,16 +266,17 @@ function addHighScore(event) {
     else if (highScore.playerScore > lowestScore.playerScore) {
         highScores.push(highScore);
     }
-    else {
-        console.log("loser");
-        return;
-    }
     
     // Sort from largest to smallest
     highScores = highScores.sort(function(a, b) {
         return b.playerScore - a.playerScore;
     });
 
+    // If more high scores than max saved, delete lowest score
+    if (highScores.length > maxHighScores) {
+        highScores.length = maxHighScores;
+    }
+    
     saveHighScores();
 
     window.location.href="./high-scores.html"
