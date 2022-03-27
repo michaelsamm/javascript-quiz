@@ -1,7 +1,3 @@
-// TO DO
-// Add real questions
-
-
 // Variables
 var score = 0;
 var startTime = 60;
@@ -18,104 +14,104 @@ var containerEl = document.getElementById("container");
 
 var questions = [
     {
-        question: "Question 1",
-        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
-        correct: "Correct"
+        question: "Which character is the delimiter in a 'for' loop?",
+        options: ["Colon", "Period", "Semi-colon", "Question Mark"],
+        correct: "Semi-colon"
     },
     {
-        question: "Question 2",
-        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
-        correct: "Correct"
+        question: "Which of the following is the declared function?",
+        options: ["function fight() {}", "fight() function {}", "var fight = function() {}", "function var = fight() {}"],
+        correct: "function fight() {}"
     },
     {
-        question: "Question 3",
-        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
-        correct: "Correct"
+        question: "How do you create a comment in javascript?",
+        options: ["//", "**", "/com", "You can't"],
+        correct: "//"
     },
     {
-        question: "Question 4",
-        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
-        correct: "Correct"
+        question: "Which could call a function called 'fight'?",
+        options: ["fight();", "fight;", "FIGHT()", "var = fight"],
+        correct: "fight();"
     },
     {
-        question: "Question 5",
-        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
-        correct: "Correct"
+        question: "What in the Javascript would cause the word 'four' to appear in the DevTools Console?",
+        options: ["console.log('four');", "console.four", "'four'", "4"],
+        correct: "console.log('four');"
     },
     {
-        question: "Question 6",
-        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
-        correct: "Correct"
+        question: "String concatenation allows combining strings and variable data into a single string. What character goes between the strings and variables?",
+        options: ["+", "!", "i--", "..."],
+        correct: "+"
     },
     {
-        question: "Question 7",
-        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
-        correct: "Correct"
+        question: "How could you increase a variable 'i' by 1?",
+        options: ["i++", "ii", "i.i", "j"],
+        correct: "i++"
     },
     {
-        question: "Question 8",
-        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
-        correct: "Correct"
+        question: "Which is NOT part of an 'if' conditional statement?",
+        options: ["if", "else if", "else", "eiffel"],
+        correct: "eiffel"
     },
     {
-        question: "Question 9",
-        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
-        correct: "Correct"
+        question: "The following are methods of selecting an element on the page EXCEPT:",
+        options: ["document.querySelector()", "document.getElementById()", "document.getElementByClassName()", "documentgetMeASandwich()"],
+        correct: "documentgetMeASandwich()"
     },
     {
-        question: "Question 10",
-        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
-        correct: "Correct"
+        question: "What is a method?",
+        options: ["A function belonging to an object", "A breed of dog", "A global variable", "A delimiter"],
+        correct: "A function belonging to an object"
     },
     {
-        question: "Question 11",
-        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
-        correct: "Correct"
+        question: "Which of these is NOT a comparison operator?",
+        options: ["===", "&&", "==", "!="],
+        correct: "&&"
     },
     {
-        question: "Question 12",
-        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
-        correct: "Correct"
+        question: "Pick the operator that is used for 'or' logic.",
+        options: ["||", "~", "===", "()"],
+        correct: "||"
     },
     {
-        question: "Question 13",
-        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
-        correct: "Correct"
+        question: "How would you prevent an event from bubbling?",
+        options: ["event.preventDefault", "event.noBubbles", "event.stopPropagation", "event.freeze"],
+        correct: "event.stopPropagation"
     },
     {
-        question: "Question 14",
-        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
-        correct: "Correct"
+        question: "What is the default unit of time when setting a setInterval?",
+        options: ["milliseconds", "seconds", "minutes", "hours"],
+        correct: "milliseconds"
     },
     {
-        question: "Question 15",
-        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
-        correct: "Correct"
+        question: "What could express how many items are in an array?",
+        options: ["arr.length", "arr-length", "arr:length", "arr.count"],
+        correct: "arr.length"
     },
     {
-        question: "Question 16",
-        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
-        correct: "Correct"
+        question: "What command retrieves data from localStorage?",
+        options: ["localStorage.getItems", "localStorage.setItems", "localStorage.getStorage", "git pull localStorage"],
+        correct: "localStorage.getItems"
     },
     {
-        question: "Question 17",
-        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
-        correct: "Correct"
+        question: "What goes between different properties in an object?",
+        options: ["Comma", "Nothing", "Semi-colon", "Curly bracket"],
+        correct: "Comma"
     },
     {
-        question: "Question 18",
-        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
-        correct: "Correct"
+        question: "Which HMTL element links the Javascript?",
+        options: ["<script>", "<link>", "<js>", "<p>"],
+        correct: "<script>"
     },
     {
-        question: "Question 19",
-        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
-        correct: "Correct"
+        question: "When saving data to localStorage, what extra handling can the data need to store properly?",
+        options: ["JSON.stringify", "JSON.parse", "JSON.store", "JSON.write"],
+        correct: "JSON.stringify"
     },
     {
-        question: "Question 20",
-        options: ["Wrong1", "Wrong2", "Correct", "Wrong3"],
-        correct: "Correct"
+        question: "Which of the following would show an alert box on the screen?",
+        options: ["alert('Message');", "alert.Message;", "alert (message);", "ALERT"],
+        correct: "alert('Message');"
     }
 ];
 var currentQuestion = 0;
@@ -297,8 +293,6 @@ function loadHighScores() {
 
     // turn the string back into an array
     highScores = JSON.parse(savedScores);
-
-    console.log(highScores);
 }
 
 // Create high score entry UI and enter high score 

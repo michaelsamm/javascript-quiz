@@ -56,8 +56,6 @@
         
             // turn the string back into an array
             highScores = JSON.parse(savedScores);
-        
-            console.log(highScores);
         }
 
         function showHighScores() {
@@ -89,8 +87,6 @@
 
             // Update array in localstorage
             localStorage.setItem("highScores", highScores);
-
-            console.log(highScores);
 
             showHighScores();
         }
