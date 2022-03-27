@@ -1,34 +1,10 @@
-// Variables needed:
-    // start time
-    // time - for 
-    // timer interval
-    // Questions with answers????
-        // **look up how to create questions
-        // **designate a correct answer
-        // **ensure correct answer is not in the same place
-        // **randomize question order
-        // **don't repeat a question
-    
-
-
-// Listener for start button
-    // On click start time
-
-// Swap out div with question
-// swap out div with answer buttons??
-// Add each answer option as li?? button??
-// Click listener for each option
-// Correct result
-    // Add to score
-    // Show 'correct'
-    // Advance to next question
-        // Swap question again
-        // Swap button content again
-// Incorrect result
-    // Subtract time
-    // Show 'incorrect'
-
-
+// TO DO
+// --Sort high scores
+// --Limit high scores
+// --Compare new score to high score list and update if in top x
+// HTML on high scores page
+// Landing post-submit new score (high score list with options)
+// Add real questions
 
 
 // Variables
@@ -67,6 +43,7 @@ var currentQuestion = 0;
 var finalQuestion = questions.length -1;
 
 var highScores = [];
+var maxHighScores = 8;
 
 
 
@@ -88,6 +65,9 @@ function correctAnswer() {
     }
     // If current question is the final question, end the game
     else {
+        // Bonus for completing all questions before time ran out
+        score++;
+        scoreEl.innerText = score;
         endGame();
         return;
     }
@@ -150,7 +130,6 @@ function displayQuestion() {
     q.options = q.options.sort(function() {
         return Math.random() - 0.5
     });
-    console.log(q.options);
 
     // Create buttons for all options and add to options div with event listeners
     for (i = 0; i < q.options.length; i++) {
@@ -168,13 +147,15 @@ function randomQs() {
     questions = questions.sort(function() {
         return Math.random() - 0.5
     });
-    console.log(questions);
 }
 
 // Add to high scores
 function addHighScore(event) {
     // Block page refresh on submit
     event.preventDefault();
+
+    // Refresh the high scores list
+    loadHighScores();
     
     // Add values for initial to a variable
     var initials = document.querySelector("input[name='playerInitials']").value;
@@ -182,6 +163,7 @@ function addHighScore(event) {
     // Check for empty initials
     if (!initials) {
         alert("Please enter initials");
+        return;
     }
 
     // package up as an object
@@ -190,14 +172,26 @@ function addHighScore(event) {
         playerScore: score
     }
 
-    // push new score to high scores array if it is a high score
+    // push new score to high scores array if it is a high score (save up to 20)
+    var scoreItems = highScores.length;
+    var lowestScore = highScores[scoreItems - 1];
 
-
-    highScores.push(highScore);
-
-    console.log(highScores);
+    if (highScore.playerScore > lowestScore.playerScore || highScores.length < maxHighScores) {
+        highScores.push(highScore);
+    }
+    else {
+        console.log("loser");
+        return;
+    }
+    
+    // Sort from largest to smallest
+    highScores = highScores.sort(function(a, b) {
+        return b.playerScore - a.playerScore;
+    });
 
     saveHighScores();
+
+    console.log(highScores);
 }
 
 function saveHighScores() {
@@ -208,12 +202,14 @@ function loadHighScores() {
     // get from localStorage
     var savedScores = localStorage.getItem("highScores");
 
+    // stop if no high scores in localStorage
+    if (!savedScores) {
+        return;
+    }
+
+    // turn the string back into an array
     highScores = JSON.parse(savedScores);
 
-    // Sort from largest to smallest
-    highScores.sort(function(a, b) {
-        return a.score - b.score;
-    });
     console.log(highScores);
 }
 
@@ -238,6 +234,10 @@ function scoreEntry() {
     scoreSubmit.addEventListener("click", addHighScore);
     scoreContainer.appendChild(scoreSubmit);
 }
+
+// Play again?
+// Top high scores use slice
+// Buttons for play again AND view high scores
 
 // End Game
 function endGame() {
@@ -265,7 +265,6 @@ function startTimer() {
 
 // Start Game
 function startGame() {
-    loadHighScores();
     randomQs();
     startTimer();
     displayQuestion();

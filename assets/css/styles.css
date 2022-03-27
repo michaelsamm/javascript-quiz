@@ -158,6 +158,35 @@ main {
 
 .score-form button:hover {
     background-position: 1px -50px;
-    color: black;
-    text-shadow: none;
+    text-shadow: 2px -2px black;
+}
+
+
+
+table, th, td {
+    border-collapse: collapse;
+}
+
+table {
+    border: 1px solid var(--tertiaryColor);
+    border-radius: 15px;
+    margin-top: 10px;
+    font-size: 1.25em;
+}
+
+th {
+    background-color: var(--primaryColor);
+    text-align: center;
+}
+
+th, td {
+    padding: 3px 10px;
+}
+
+td {
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    background-color: lightgray;
 }
