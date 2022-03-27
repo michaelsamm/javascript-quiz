@@ -2,7 +2,7 @@
 // --Sort high scores
 // --Limit high scores
 // --Compare new score to high score list and update if in top x
-// HTML on high scores page
+// --HTML on high scores page
 // Landing post-submit new score (high score list with options)
 // Add real questions
 
@@ -149,6 +149,7 @@ function randomQs() {
     });
 }
 
+
 // Add to high scores
 function addHighScore(event) {
     // Block page refresh on submit
@@ -176,7 +177,10 @@ function addHighScore(event) {
     var scoreItems = highScores.length;
     var lowestScore = highScores[scoreItems - 1];
 
-    if (highScore.playerScore > lowestScore.playerScore || highScores.length < maxHighScores) {
+    if (highScores.length < maxHighScores) {
+        highScores.push(highScore);
+    }
+    else if (highScore.playerScore > lowestScore.playerScore) {
         highScores.push(highScore);
     }
     else {
@@ -191,7 +195,7 @@ function addHighScore(event) {
 
     saveHighScores();
 
-    console.log(highScores);
+    window.location.href="./high-scores.html"
 }
 
 function saveHighScores() {
@@ -235,10 +239,6 @@ function scoreEntry() {
     scoreContainer.appendChild(scoreSubmit);
 }
 
-// Play again?
-// Top high scores use slice
-// Buttons for play again AND view high scores
-
 // End Game
 function endGame() {
     clearInterval(intervalId);
@@ -249,7 +249,6 @@ function endGame() {
     resultEl.innerHTML = "";
 
     scoreEntry();
-     
 }
 
 // Start Timer

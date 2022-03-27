@@ -35,11 +35,15 @@
                     </th>
                 </tr>
             </table>
+            <button id="clear-scores">
+                Clear High Scores
+            </button>
         </div>
     </main>
     <script>
         var highScores = [];
         var scoreTableEl = document.getElementById("scoreTable");
+        var clearScoresEl = document.getElementById("clear-scores");
         
         function loadHighScores() {
             // get from localStorage
@@ -74,7 +78,21 @@
             }
         }
 
+        function clearHighScores() {
+            // Clear out high scores array
+            highScores = [];
+
+            // Update array in localstorage
+            localStorage.setItem("highScores", highScores);
+
+            console.log(highScores);
+
+            showHighScores();
+        }
+
         showHighScores();
+
+        clearScoresEl.addEventListener("click", clearHighScores);
 
     </script>
 </body>
