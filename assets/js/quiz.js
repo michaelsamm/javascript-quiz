@@ -154,7 +154,7 @@ function displayQuestion() {
 
     // Create buttons for all options and add to options div with event listeners
     for (i = 0; i < q.options.length; i++) {
-        var option = document.createElement("btn");
+        var option = document.createElement("button");
         option.classList.add("option");
         option.innerText = q.options[i];
         option.setAttribute("optionId", i);
@@ -171,7 +171,73 @@ function randomQs() {
     console.log(questions);
 }
 
-// Evaluate 
+// Add to high scores
+function addHighScore(event) {
+    // Block page refresh on submit
+    event.preventDefault();
+    
+    // Add values for initial to a variable
+    var initials = document.querySelector("input[name='playerInitials']").value;
+
+    // Check for empty initials
+    if (!initials) {
+        alert("Please enter initials");
+    }
+
+    // package up as an object
+    var highScore = {
+        playerInitials: initials,
+        playerScore: score
+    }
+
+    // push new score to high scores array if it is a high score
+
+
+    highScores.push(highScore);
+
+    console.log(highScores);
+
+    saveHighScores();
+}
+
+function saveHighScores() {
+    localStorage.setItem("highScores", JSON.stringify(highScores))
+};
+
+function loadHighScores() {
+    // get from localStorage
+    var savedScores = localStorage.getItem("highScores");
+
+    highScores = JSON.parse(savedScores);
+
+    // Sort from largest to smallest
+    highScores.sort(function(a, b) {
+        return a.score - b.score;
+    });
+    console.log(highScores);
+}
+
+// Create high score entry UI and enter high score 
+function scoreEntry() {
+    var scoreContainer = document.createElement("form");
+    scoreContainer.classList.add("score-form");
+    optionsEl.appendChild(scoreContainer);
+
+    var scoreLabel = document.createElement("label");
+    scoreLabel.setAttribute("for", "playerInitials");
+    scoreLabel.innerText = "Enter your initials:";
+    scoreContainer.appendChild(scoreLabel);
+
+    var scoreInput = document.createElement("input");
+    scoreInput.setAttribute("type", "text");
+    scoreInput.setAttribute("name", "playerInitials");
+    scoreContainer.appendChild(scoreInput);
+
+    var scoreSubmit = document.createElement("button");
+    scoreSubmit.innerText = "Submit";
+    scoreSubmit.addEventListener("click", addHighScore);
+    scoreContainer.appendChild(scoreSubmit);
+}
 
 // End Game
 function endGame() {
@@ -180,8 +246,9 @@ function endGame() {
 
     questionEl.innerText = "All done!";
     optionsEl.innerHTML = "<p> Your final score is " + score + ". </p>";
+    resultEl.innerHTML = "";
 
-    
+    scoreEntry();
      
 }
 
@@ -198,10 +265,10 @@ function startTimer() {
 
 // Start Game
 function startGame() {
+    loadHighScores();
     randomQs();
     startTimer();
     displayQuestion();
-    console.log("Game Started");
 }
 
 

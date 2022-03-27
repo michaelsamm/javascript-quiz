@@ -93,7 +93,7 @@ main {
     font-size: 1.5em;
     border: solid 1px black;
     border-radius: 15px;
-    padding: 10px 15px 15px 15px;
+    padding: 15px;
     margin: 2px 0px;
 }
 
@@ -123,3 +123,41 @@ main {
     color: gray;
 }
 
+.score-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.score-form label {
+    margin-right: 5px;
+}
+
+.score-form input {
+    margin-right: 5px;
+    padding: 5px;
+    width: 120px;
+    border-radius: 5px;
+}
+
+.score-form button {
+    margin-right: 10px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    color: white;
+    background-color: var(--primaryColor);
+    background-image: linear-gradient(45deg, var(--primaryColor) 0%, var(--secondaryColor) 50%, var(--tertiaryColor) 90%);
+    transition: all .5s ease-out;
+    background-size: 1px 100px;
+    background-position: 0 -10px;
+    padding: 5px 10px;
+    text-shadow: 2px 2px black;
+    border-radius: 10px;
+    width: 80px;
+}
+
+.score-form button:hover {
+    background-position: 1px -50px;
+    color: black;
+    text-shadow: none;
+}
